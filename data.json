@@ -1,0 +1,41 @@
+{
+  "siteTitle": "Maestro Crown College",
+  "siteLogo": "https://picsum.photos/seed/logo/200/200",
+  "ticker": "Welcome to Maestro Crown College. Admission for the session 2025-26 is now open.",
+  "collegeInfo": {
+    "eiin": "123456",
+    "location": "Mymensingh, Bangladesh",
+    "established": "1970",
+    "phone": "+8801712345678",
+    "email": "info@maestrocrown.edu.bd"
+  },
+  "principal": {
+    "name": "Principal Name",
+    "message": "Welcome to our college. We are committed to providing quality education and fostering an environment of excellence. Our institution has a rich history of academic success and community involvement.",
+    "image": "https://picsum.photos/seed/principal/300/400"
+  },
+  "pages": {
+    "about": { "title": "প্রতিষ্ঠান সম্পর্কে", "content": "আমাদের কলেজ সম্পর্কে বিস্তারিত তথ্য এখানে থাকবে।" },
+    "administration": { "title": "প্রশাসনিক কার্যক্রম", "content": "প্রশাসনিক কার্যক্রমের তথ্য এখানে থাকবে।" },
+    "academic": { "title": "একাডেমিক কার্যক্রম", "content": "একাডেমিক কার্যক্রমের তথ্য এখানে থাকবে।" },
+    "facilities": { "title": "সুযোগ সুবিধা", "content": "শিক্ষার্থীদের জন্য সুযোগ সুবিধার তথ্য এখানে থাকবে।" },
+    "admission": { "title": "ভর্তি কার্যক্রম", "content": "ভর্তি সংক্রান্ত সকল তথ্য এখানে থাকবে।" },
+    "results": { "title": "ফলাফল", "content": "পরীক্ষার ফলাফল সংক্রান্ত তথ্য এখানে থাকবে।" },
+    "gallery": { "title": "গ্যালারী", "content": "কলেজের বিভিন্ন অনুষ্ঠানের ছবি এখানে থাকবে।" },
+    "contact": { "title": "যোগাযোগ", "content": "আমাদের সাথে যোগাযোগের ঠিকানা ও ম্যাপ এখানে থাকবে।" }
+  },
+  "notices": [
+    { "id": "1", "title": "Class Routine 2025", "date": "2025-04-10" },
+    { "id": "2", "title": "Exam Schedule - Final Term", "date": "2025-04-05" },
+    { "id": "3", "title": "Holiday Notice - Eid-ul-Fitr", "date": "2025-03-28" }
+  ],
+  "importantLinks": [
+    { "id": "1", "title": "Ministry of Education", "url": "#" },
+    { "id": "2", "title": "Education Board", "url": "#" },
+    { "id": "3", "title": "National University", "url": "#" }
+  ],
+  "bannerImages": [
+    "https://picsum.photos/seed/college1/1200/400",
+    "https://picsum.photos/seed/college2/1200/400"
+  ]
+}
