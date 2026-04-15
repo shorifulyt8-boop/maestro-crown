@@ -33,7 +33,43 @@ async function startServer() {
         .eq("id", 1)
         .single();
 
-      if (error) throw error;
+      if (error) {
+        // If no data found, return a default initial state instead of erroring
+        if (error.code === 'PGRST116' || error.message?.includes('JSON object requested, multiple (or no) rows returned')) {
+          const defaultData = {
+            siteTitle: "Maestro Crown College",
+            siteLogo: "https://picsum.photos/seed/college/200/200",
+            tickerItems: [{ id: "1", text: "Welcome to Maestro Crown College!" }],
+            collegeInfo: {
+              eiin: "123456",
+              location: "Mymensingh, Bangladesh",
+              established: "2024",
+              phone: "+880 1234-567890",
+              email: "info@maestrocrown.edu.bd"
+            },
+            principal: {
+              name: "Principal Name",
+              message: "Welcome to our institution.",
+              image: "https://picsum.photos/seed/principal/400/500"
+            },
+            pages: {
+              about: { title: "About Us", content: "About content..." },
+              administration: { title: "Administration", content: "Admin content..." },
+              academic: { title: "Academic", content: "Academic content..." },
+              facilities: { title: "Facilities", content: "Facilities content..." },
+              admission: { title: "Admission", content: "Admission content..." },
+              results: { title: "Results", content: "Results content..." },
+              gallery: { title: "Gallery", content: "Gallery content..." },
+              contact: { title: "Contact", content: "Contact content..." }
+            },
+            notices: [],
+            importantLinks: [],
+            bannerImages: ["https://picsum.photos/seed/campus1/1200/400"]
+          };
+          return res.json(defaultData);
+        }
+        throw error;
+      }
       res.json(data.content);
     } catch (error) {
       console.error("Supabase read error:", error);
