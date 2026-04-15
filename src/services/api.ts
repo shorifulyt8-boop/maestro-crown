@@ -2,7 +2,10 @@ import { SiteData } from "../types";
 
 export const fetchSiteData = async (): Promise<SiteData> => {
   const response = await fetch("/api/data");
-  if (!response.ok) throw new Error("Failed to fetch data");
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.details || errorData.error || "Failed to fetch data from server");
+  }
   return response.json();
 };
 

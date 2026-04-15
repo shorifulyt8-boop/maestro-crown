@@ -11,16 +11,21 @@ import Sidebar from "./components/Sidebar";
 import AdminPanel from "./components/AdminPanel";
 import Login from "./components/Login";
 import Footer from "./components/Footer";
-import { Loader2 } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 
 export default function App() {
   const [data, setData] = useState<SiteData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     fetchSiteData()
       .then(setData)
+      .catch(err => {
+        console.error("Fetch error:", err);
+        setError(err.message || "Failed to load data");
+      })
       .finally(() => setLoading(false));
     
     const auth = localStorage.getItem("admin_auth");
@@ -35,7 +40,38 @@ export default function App() {
     );
   }
 
-  if (!data) return <div>Error loading data</div>;
+  if (error || !data) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen bg-gray-50 p-4 text-center">
+        <div className="bg-white p-8 rounded-2xl shadow-xl border border-red-100 max-w-md">
+          <div className="w-16 h-16 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <X className="w-8 h-8" />
+          </div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">Error Loading Data</h2>
+          <p className="text-gray-600 mb-6">{error || "The application could not fetch data from the server."}</p>
+          <div className="bg-gray-50 p-4 rounded-xl text-left mb-6">
+            <p className="text-xs font-bold text-gray-400 uppercase mb-2">Possible Solutions:</p>
+            <ul className="text-sm text-gray-600 space-y-2">
+              <li className="flex items-start gap-2">
+                <span className="text-green-500 font-bold">•</span>
+                Check if <strong>SUPABASE_URL</strong> and <strong>SUPABASE_ANON_KEY</strong> are set in Vercel.
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-500 font-bold">•</span>
+                Ensure your Supabase project is active.
+              </li>
+            </ul>
+          </div>
+          <button 
+            onClick={() => window.location.reload()}
+            className="w-full bg-green-600 text-white font-bold py-3 rounded-xl hover:bg-green-700 transition-colors"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const PageLayout = ({ children }: { children: React.ReactNode }) => (
     <div className="max-w-6xl mx-auto bg-white shadow-xl min-h-screen flex flex-col">

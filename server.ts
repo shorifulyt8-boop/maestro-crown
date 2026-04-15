@@ -20,6 +20,12 @@ async function startServer() {
 
   // API to get site data from Supabase
   app.get("/api/data", async (req, res) => {
+    if (!supabaseUrl || !supabaseKey) {
+      return res.status(500).json({ 
+        error: "Supabase configuration missing", 
+        details: "Please set SUPABASE_URL and SUPABASE_ANON_KEY in your environment variables." 
+      });
+    }
     try {
       const { data, error } = await supabase
         .from("site_config")
@@ -82,4 +88,8 @@ async function startServer() {
 }
 
 const appPromise = startServer();
-export default appPromise;
+
+export default async (req: any, res: any) => {
+  const app = await appPromise;
+  return app(req, res);
+};
